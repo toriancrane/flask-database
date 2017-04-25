@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+body {
+    background: url(https://content.screencast.com/users/TorianCrane/folders/Snagit/media/a82bacf3-8999-4f51-b240-75c3490440f5/04.25.2017-12.53.png);
+    background-size: cover;
+    background-position: center; 
+    font-family: Lato!important;
+    color: white;
+}
+
+.row {
+	margin-top: 25%;
+}
+
+html {
+    height: 100%;
+}
+
+.jumbotron{
+    border-radius:0px!important;
+    box-shadow:1px 1px 4px rgba(0,0,0,0.4);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(https://images7.alphacoders.com/708/thumb-1920-708805.jpg); 
+    position: relative;
+    height: 100%;
+}
+
+.jumbotron .btn{
+    border-radius:0px!important;
+    box-shadow:1px 1px 4px rgba(0,0,0,0.4);
+    padding:10px 40px;
+}
+
+</style>
+<main class="container">
+
+		<div class="jumbotron">
+          <h1>MenuHut</h1>
+          <p>A simple app that stores the menus for various restaurants.</p>
+          <p><a href="/restaurants" class="btn btn-primary btn-lg">View Restaurants</a></p>
+        </div>
+
+</main>
+
+{% endblock %}

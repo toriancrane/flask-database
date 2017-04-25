@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">        
+        <div class="col-md-8 col-md-offset-2 text-center">
+            <div class="alert alert-danger" role="alert">{{ error }}</div>
+            <div>
+                <img class="img-fluid" src="https://vignette3.wikia.nocookie.net/criminal-case-grimsborough/images/b/b1/Delete_Icon.png" alt="Responsive image">
+                <br>
+                <br>
+            </div>
+            <div>
+                <a class="btn btn-large btn-info" href="/restaurants">
+                    Return to Restaurants Page
+                </a>
+            </div>
+        </div>        
+    </div>
+</div>
+{% endblock %}
