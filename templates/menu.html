@@ -31,5 +31,35 @@
     <a href="#" class="btn btn-danger btn-sm">Delete</a>
     <br><br>
     {% endif %}
-{% endfor %}    		
+{% endfor %}
+
+<h2>Desserts</h2>
+{% for i in items %}
+    {% if i.course == "Dessert" %}    
+    {{i.name}}
+    <br>
+    {{i.price}}
+    <br>
+    {{i.description}}
+    <br>
+    <a href="#" class="btn btn-info btn-sm">Edit</a>
+    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+    <br><br>
+    {% endif %}
+{% endfor %}
+
+<h2>Beverages</h2>
+{% for i in items %}
+    {% if i.course == "Beverage" %}    
+    {{i.name}}
+    <br>
+    {{i.price}}
+    <br>
+    {{i.description}}
+    <br>
+    <a href="#" class="btn btn-info btn-sm">Edit</a>
+    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+    <br><br>
+    {% endif %}
+{% endfor %}   		
 {% endblock %}
