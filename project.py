@@ -17,7 +17,7 @@ def frontPage():
 
 @app.route('/restaurants')
 def restaurantsPage():
-    """ Restaurants Page Function """
+    """ View All Restaurants Function """
     res_list = db_methods.getAllRestaurants()
     return render_template('restaurants.html', restaurants = res_list)
 
@@ -35,7 +35,6 @@ def newRestaurantPage():
             return render_template('newrestaurant.html', error = error)
     else:
         return render_template('newrestaurant.html')
-
 
 @app.route('/restaurants/<int:restaurant_id>/edit', methods=['GET', 'POST'])
 def editRestaurantPage(restaurant_id):
@@ -55,7 +54,6 @@ def editRestaurantPage(restaurant_id):
 
         # Render edit page with current restaurant name
         return render_template('editrestaurant.html', res_name = res_name)
-
 
 @app.route('/restaurants/<int:restaurant_id>/delete')
 def deleteRestaurantPage(restaurant_id):
