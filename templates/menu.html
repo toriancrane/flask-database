@@ -1,65 +1,120 @@
-{% extends "base.html" %}
-
-{% block content %}
-<h2>Appetizers</h2>
-<br>
-{% for i in items %}
-
-    {% if i.course == "Appetizer" %}   
-    {{i.name}}
-    <br>
-    {{i.price}}
-    <br>
-    {{i.description}}
-    <br>
-    <a href="#" class="btn btn-info btn-sm">Edit</a>
-    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-    <br><br>
-    {% endif %}
-{% endfor %}
-
-<h2>Entrees</h2>
-{% for i in items %}
-    {% if i.course == "Entree" %}    
-    {{i.name}}
-    <br>
-    {{i.price}}
-    <br>
-    {{i.description}}
-    <br>
-    <a href="#" class="btn btn-info btn-sm">Edit</a>
-    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-    <br><br>
-    {% endif %}
-{% endfor %}
-
-<h2>Desserts</h2>
-{% for i in items %}
-    {% if i.course == "Dessert" %}    
-    {{i.name}}
-    <br>
-    {{i.price}}
-    <br>
-    {{i.description}}
-    <br>
-    <a href="#" class="btn btn-info btn-sm">Edit</a>
-    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-    <br><br>
-    {% endif %}
-{% endfor %}
-
-<h2>Beverages</h2>
-{% for i in items %}
-    {% if i.course == "Beverage" %}    
-    {{i.name}}
-    <br>
-    {{i.price}}
-    <br>
-    {{i.description}}
-    <br>
-    <a href="#" class="btn btn-info btn-sm">Edit</a>
-    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-    <br><br>
-    {% endif %}
-{% endfor %}   		
+{% extends "base.html" %} {% block content %}
+<link rel="stylesheet" type="text/css" href="/static/menu.css">
+<div class="row">
+    <div style="padding-top:25px;"> </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="panel panel-default post-panel">
+            <div class="panel-body">
+                <span>
+                    <h1 class="panel-title pull-left" style="font-size:30px;">Menu Items</h1>
+                    <div class="dropdown pull-right">
+                    {% for r in restaurants %}
+                      <a href="/restaurants/{{r.id}}/menu/new-item">
+                      {% endfor %}
+                        <button class="btn btn-success" type="button">
+                            <i class="fa fa-plus" aria-hidden="true"></i>Add New Menu Item
+                        </button>
+                      </a>
+                    </div>
+                </span>
+                <br>
+                <br>
+                <hr>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<div class="menu-list">
+    <div class="menu-card">
+        <h2>Appetizers</h2>
+        <div class="menu-item">
+            {% for i in items %} 
+            {% if i.course == "Appetizer" %} 
+            <div class="menu-item-name">
+                {{i.name}}
+            </div>
+            <div class="menu-item-price">
+                {{i.price}}
+            </div>
+            <div>
+                {{i.description}}
+            </div>
+            <div class="menu-item-btns">
+                <a href="#" class="btn btn-info btn-sm">Edit</a>
+                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+            </div>            
+            {% endif %} 
+            {% endfor %}            
+        </div>        
+    </div>
+    <div class="menu-card">
+        <h2>Entrees</h2>
+        <div class="menu-item">
+            {% for i in items %} 
+            {% if i.course == "Entree" %} 
+            <div class="menu-item-name">
+                {{i.name}}
+            </div>
+            <div class="menu-item-price">
+                {{i.price}}
+            </div>
+            <div>
+                {{i.description}}
+            </div>
+            <div class="menu-item-btns">
+                <a href="#" class="btn btn-info btn-sm">Edit</a>
+                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+            </div>            
+            {% endif %} 
+            {% endfor %}            
+        </div>        
+    </div>
+    <div class="menu-card">
+        <h2>Desserts</h2>
+        <div class="menu-item">
+            {% for i in items %} 
+            {% if i.course == "Dessert" %} 
+            <div class="menu-item-name">
+                {{i.name}}
+            </div>
+            <div class="menu-item-price">
+                {{i.price}}
+            </div>
+            <div>
+                {{i.description}}
+            </div>
+            <div class="menu-item-btns">
+                <a href="#" class="btn btn-info btn-sm">Edit</a>
+                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+            </div>            
+            {% endif %} 
+            {% endfor %}            
+        </div>        
+    </div>
+    <div class="menu-card">
+        <h2>Beverages</h2>
+        <div class="menu-item">
+            {% for i in items %} 
+            {% if i.course == "Beverage" %} 
+            <div class="menu-item-name">
+                {{i.name}}
+            </div>
+            <div class="menu-item-price">
+                {{i.price}}
+            </div>
+            <div>
+                {{i.description}}
+            </div>
+            <div class="menu-item-btns">
+                <a href="#" class="btn btn-info btn-sm">Edit</a>
+                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+            </div>            
+            {% endif %} 
+            {% endfor %}            
+        </div>        
+    </div>
+</div>
 {% endblock %}

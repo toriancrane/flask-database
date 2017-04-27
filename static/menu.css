@@ -1,0 +1,16 @@
+.menu-list {
+	width: 40%;
+	background: #ac8f57; 
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	align-items: center;
+	padding: 15px 40px 40px 40px;
+}
+
+.menu-card {
+	width: 100%;
+	background: #e0cda7;
+	margin-top: 25px;
+	text-align: center;
+}

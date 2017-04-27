@@ -64,11 +64,28 @@ def deleteRestaurantPage(restaurant_id):
     return render_template('deleterestaurant.html', error = error)
 
 
-@app.route('/restaurants/<int:restaurant_id>/')
-def restaurantMenu(restaurant_id):
+@app.route('/restaurants/<int:restaurant_id>/menu')
+def restaurantMenuPage(restaurant_id):
     """ Show Restaurant Menu Items Function """
+    res_list = db_methods.getAllRestaurants()
     items = db_methods.getMenuItems(restaurant_id)
-    return render_template('menu.html', items = items)
+    return render_template('menu.html', items = items, restaurants = res_list)
+
+@app.route('/restaurants/<int:restaurant_id>/menu/new-item', 
+            methods=['GET', 'POST'])
+def newMenuItemPage(restaurant_id):
+    """ Create New Menu Item Function """
+    if request.method == 'POST':
+        menu_item = request.form['menu_item']
+        if res_name:
+            db_methods.addNewRestaurant(res_name)
+            time.sleep(0.1)
+            return redirect("/restaurants")
+        else:
+            error = "Please be sure to fill out all required fields."
+            return render_template('newmenuitem.html', error = error)
+    else:
+        return render_template('newmenuitem.html')
 
 if __name__ == '__main__':
     app.debug = True

@@ -46,6 +46,9 @@ def getMenuItems(val):
     items = session.query(MenuItem).filter_by(restaurant_id=val)
     return items
 
-
+def addNewMenuItem(val):
+    new_item = MenuItem(name = val)
+    session.add(new_item)
+    session.commit
 
 #searchRestauarant("Thai Rama")

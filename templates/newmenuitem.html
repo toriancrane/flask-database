@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,900);
+
+.card {
+    background:#FFF;
+    display: block;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    border:1px solid #AAA;
+    border-bottom:3px solid #BBB;
+    padding:0px;
+    margin-top:5em;
+    overflow:hidden;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Roboto', sans-serif;
+    -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-body{
+ margin:1em;   
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-none {
+  float: none !important;
+}
+
+.pull-right {
+  float: right;
+}
+
+.card-header{
+    width:100%;
+    color:#2196F3;
+    border-bottom:3px solid #BBB;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Roboto', sans-serif;
+    padding:0px;
+    margin-top:0px;
+    overflow:hidden;
+    -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+}
+
+.card-header-grey{
+    background-color:#424242;
+    color:#FFFFFF;
+    border-bottom:3px solid #BBB;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Roboto', sans-serif;
+    padding:0px;
+    margin-top:0px;
+    overflow:hidden;
+    -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-heading {
+    display: block;
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 24px;
+    margin-left:1em;
+    border-bottom: 1px #2196F3;
+    color:#fff;
+   
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">{{ error }}</div>
+            {% endif %}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-header-grey">
+                       <h4 class="card-heading">Please fill out the below fields:</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="input-group">
+                                <div class="form-group">
+                                    <input type="text" name="res_name" class="form-control">
+                                </div>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success btn-add" type="submit">
+                                        <span class="glyphicon glyphicon-plus"> Add</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
