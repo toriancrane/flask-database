@@ -30,12 +30,14 @@ h4 {
     border: none;
     border-top: 1px solid rgba(34, 36, 38, .1);
     box-shadow: none;
+    background-color: white;
 }
 
 .card-img-top {
     display: block;
     width: 100%;
     height: auto;
+    background-color: #607d8b;
 }
 
 .card-title {

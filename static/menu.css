@@ -2,10 +2,6 @@ html {
 	height: 100%;
 }
 
-body {
-	background-color: #e0e0e0;
-}
-
 .panel {
 	box-shadow: 0 0 30px black;
 }
@@ -25,12 +21,30 @@ body {
 	color: white;
 }
 
+h2 {
+	color: #ffcd94;
+}
+
 .menu-item-name {
 	font-size: 1.5em;
+	padding-bottom: 10px;
+	color: #ffcd94;
+}
+
+.menu-item-desc {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.menu-item-price {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 1.4em;
 }
 
 .menu-item-btns {
 	width: 70%;
+	padding-bottom: 25px;
 }
 
 hr {

@@ -51,4 +51,8 @@ def addNewMenuItem(val):
     session.add(new_item)
     session.commit
 
+def searchItemNameByID(val):
+    item = session.query(MenuItem).filter_by(id = val).one()
+    return item.name
+
 #searchRestauarant("Thai Rama")

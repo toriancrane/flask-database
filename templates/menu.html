@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <link rel="stylesheet" type="text/css" href="/static/menu.css">
+
 <div class="container">
     <div class="row">
         <div style="padding-top:25px;"> </div>
@@ -48,7 +49,7 @@
                         </div>
                         <div class="menu-item-btns center-block">
                             <div class="col-xs-6 text-left">
-                                <a href="#" class="btn btn-info btn-sm btn-block">Edit</a>
+                                <a href="/restaurants/{{r.id}}/menu/{{i.id}}/edit" class="btn btn-info btn-sm btn-block">Edit</a>
                             </div>
                             <div class="col-xs-6 text-right">
                                 <a href="#" class="btn btn-danger btn-sm btn-block">Delete</a>
