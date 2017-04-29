@@ -76,9 +76,13 @@ def restaurantMenuPage(restaurant_id):
 def newMenuItemPage(restaurant_id):
     """ Create New Menu Item Function """
     if request.method == 'POST':
-        menu_item = request.form['menu_item']
-        if res_name:
-            db_methods.addNewRestaurant(res_name)
+        item_name = request.form['item_name']
+        item_price = request.form['item_price']
+        item_desc = request.form['item_desc']
+        item_course = request.form['item_course']
+        restaurant = restaurant_id
+        if item_name and item_price and item_desc and item_course:
+            db_methods.addNewMenuItem(item_name, item_price, item_desc, item_course, restaurant)
             time.sleep(0.1)
             return redirect("/restaurants")
         else:

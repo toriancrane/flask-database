@@ -46,8 +46,8 @@ def getMenuItems(val):
     items = session.query(MenuItem).filter_by(restaurant_id=val)
     return items
 
-def addNewMenuItem(val):
-    new_item = MenuItem(name = val)
+def addNewMenuItem(val1, val2, val3, val4, val5):
+    new_item = MenuItem(name = val1, price = val2, description = val3, course = val4, restaurant_id = val5)
     session.add(new_item)
     session.commit
 

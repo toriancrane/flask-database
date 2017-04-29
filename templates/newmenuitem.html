@@ -2,81 +2,7 @@
 
 {% block content %}
 
-<style>
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,900);
-
-.card {
-    background:#FFF;
-    display: block;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    border:1px solid #AAA;
-    border-bottom:3px solid #BBB;
-    padding:0px;
-    margin-top:5em;
-    overflow:hidden;
-    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-family: 'Roboto', sans-serif;
-    -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-body{
- margin:1em;   
-}
-
-.pull-left {
-  float: left;
-}
-
-.pull-none {
-  float: none !important;
-}
-
-.pull-right {
-  float: right;
-}
-
-.card-header{
-    width:100%;
-    color:#2196F3;
-    border-bottom:3px solid #BBB;
-    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-family: 'Roboto', sans-serif;
-    padding:0px;
-    margin-top:0px;
-    overflow:hidden;
-    -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    
-}
-
-.card-header-grey{
-    background-color:#424242;
-    color:#FFFFFF;
-    border-bottom:3px solid #BBB;
-    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-family: 'Roboto', sans-serif;
-    padding:0px;
-    margin-top:0px;
-    overflow:hidden;
-    -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-heading {
-    display: block;
-    font-size: 24px;
-    line-height: 28px;
-    margin-bottom: 24px;
-    margin-left:1em;
-    border-bottom: 1px #2196F3;
-    color:#fff;
-   
-}
-</style>
+<link rel="stylesheet" type="text/css" href="/static/newmenuitem.css">
 <div class="container">
     <div class="row">
         <div class="col-md-4"></div>
@@ -88,7 +14,8 @@
         <div class="col-md-4"></div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+    <div class="col-md-2"></div>
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-content">
                     <div class="card-header-grey">
@@ -96,21 +23,50 @@
                     </div>
                     <div class="card-body">
                         <form method="POST">
-                            <div class="input-group">
+                            <div>
                                 <div class="form-group">
-                                    <input type="text" name="res_name" class="form-control">
+                                    <label>Item Name</label>
+                                    <input type="text" name="item_name" class="form-control" required>
                                 </div>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-success btn-add" type="submit">
-                                        <span class="glyphicon glyphicon-plus"> Add</span>
-                                    </button>
-                                </span>
+                                <div class="form-group">
+                                    <label>Item Price</label>
+                                    <input type="text" name="item_price" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Item Description</label>
+                                    <textarea class="form-control" rows="5" id="item_desc" name="item_desc" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Course Type</label>
+                                    <br>
+                                    <label class="radio-inline">
+                                      <input type="radio" name="item_course" required> Appetizer
+                                    </label>
+                                    <label class="radio-inline">
+                                      <input type="radio" name="item_course"> Entree
+                                    </label>
+                                    <label class="radio-inline">
+                                      <input type="radio" name="item_course"> Dessert
+                                    </label>
+                                    <label class="radio-inline">
+                                      <input type="radio" name="item_course"> Beverage
+                                    </label>
+                                </div>
+                                <div class="center-block">
+                                    <div class="col-xs-6 text-left">
+                                        <a href="#" class="btn btn-success btn-sm btn-block">Add</a>
+                                    </div>
+                                    <div class="col-xs-6 text-right"> 
+                                        <a href="#" class="btn btn-danger btn-sm btn-block">Cancel</a>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>      
                 </div>
             </div>
         </div>
+        <div class="col-md-2"></div>
     </div>
 </div>
 {% endblock %}
