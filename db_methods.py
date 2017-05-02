@@ -27,9 +27,9 @@ def addNewRestaurant(val):
     session.add(new_res)
     session.commit()
 
-def searchResNameByID(val):
+def searchResByID(val):
     restaurant = session.query(Restaurant).filter_by(id = val).one()
-    return restaurant.name
+    return restaurant
 
 def editRestaurantName(val1, val2):
     restaurant = session.query(Restaurant).filter_by(id = val1).one()
@@ -49,10 +49,8 @@ def getMenuItems(val):
 def addNewMenuItem(val1, val2, val3, val4, val5):
     new_item = MenuItem(name = val1, price = val2, description = val3, course = val4, restaurant_id = val5)
     session.add(new_item)
-    session.commit
+    session.commit()
 
 def searchItemNameByID(val):
     item = session.query(MenuItem).filter_by(id = val).one()
     return item.name
-
-#searchRestauarant("Thai Rama")

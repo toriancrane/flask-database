@@ -15,11 +15,13 @@ def frontPage():
     """ Front Page Function """
     return render_template('front.html')
 
+
 @app.route('/restaurants/')
 def restaurantsPage():
     """ View All Restaurants Function """
     res_list = db_methods.getAllRestaurants()
     return render_template('restaurants.html', restaurants = res_list)
+
 
 @app.route('/restaurants/new/', methods=['GET', 'POST'])
 def newRestaurantPage():
@@ -36,6 +38,7 @@ def newRestaurantPage():
     else:
         return render_template('newrestaurant.html')
 
+
 @app.route('/restaurants/<int:restaurant_id>/edit/', methods=['GET', 'POST'])
 def editRestaurantPage(restaurant_id):
     """ Edit Restaurant Function """
@@ -50,15 +53,18 @@ def editRestaurantPage(restaurant_id):
             return render_template("newrestaurant.html", error = error)
     else:
         # Obtain text for name of restaurant
-        res_name = db_methods.searchResNameByID(restaurant_id)
+        restaurant = db_methods.searchResByID(restaurant_id)
+        res_name = restaurant.name
 
         # Render edit page with current restaurant name
         return render_template('editrestaurant.html', res_name = res_name)
 
+
 @app.route('/restaurants/<int:restaurant_id>/delete/')
 def deleteRestaurantPage(restaurant_id):
     """ Delete Restaurant Function """
-    res_name = db_methods.searchResNameByID(restaurant_id)
+    restaurant = db_methods.searchResByID(restaurant_id)
+    res_name = restaurant.name
     error = res_name + " has been deleted from the restaurant database."
     db_methods.deleteRestaurant(restaurant_id)
     return render_template('deleterestaurant.html', error = error)
@@ -67,29 +73,31 @@ def deleteRestaurantPage(restaurant_id):
 @app.route('/restaurants/<int:restaurant_id>/menu/')
 def restaurantMenuPage(restaurant_id):
     """ Show Restaurant Menu Items Function """
-    res_list = db_methods.getAllRestaurants()
+    restaurant = db_methods.searchResByID(restaurant_id)
     items = db_methods.getMenuItems(restaurant_id)
-    return render_template('menu.html', items = items, restaurants = res_list)
+    return render_template('menu.html', items = items, restaurant = restaurant)
+
 
 @app.route('/restaurants/<int:restaurant_id>/menu/new-item/', 
             methods=['GET', 'POST'])
 def newMenuItemPage(restaurant_id):
     """ Create New Menu Item Function """
+    restaurant = db_methods.searchResByID(restaurant_id)
+    res_id = restaurant_id
     if request.method == 'POST':
         item_name = request.form['item_name']
         item_price = request.form['item_price']
         item_desc = request.form['item_desc']
         item_course = request.form['item_course']
-        restaurant = restaurant_id
         if item_name and item_price and item_desc and item_course:
-            db_methods.addNewMenuItem(item_name, item_price, item_desc, item_course, restaurant)
+            db_methods.addNewMenuItem(item_name, item_price, item_desc, item_course, res_id)
             time.sleep(0.1)
-            return redirect("/restaurants")
+            return redirect("/restaurants/%s/menu/" % res_id)
         else:
             error = "Please be sure to fill out all required fields."
             return render_template('newmenuitem.html', error = error)
     else:
-        return render_template('newmenuitem.html')
+        return render_template('newmenuitem.html', res_id = res_id)
 
 # @app.route('/restaurants/<int:restaurant_id>/menu/<int:item_id>/edit/', 
 #             methods=['GET', 'POST'])
@@ -121,6 +129,18 @@ def newMenuItemPage(restaurant_id):
 #         return render_template('editmenuitem.html', item_name = item_name,
 #                                 item_price = item_price, item_desc = item_desc,
 #                                 item_course = item_course)
+
+
+# @app.route('/restaurant/<int:restaurant_id>/menu/JSON/')
+# def restaurantMenuJSON(restaurant_id):
+#     restaurant = db_methods.searchResNameByID()
+#     items = db_methods.getMenuItems()
+#     return jsonify(MenuItems=[i.serialize for i in items])
+
+# @app.route('/restaurants/JSON')
+# def restaurantsJSON():
+#     restaurants = db_methods.getAllRestaurants()
+#     return jsonify(restaurants=[r.serialize for r in restaurants])
 
 if __name__ == '__main__':
     app.debug = True

@@ -9,20 +9,16 @@
             <div class="panel panel-default post-panel">
                 <div class="panel-body">
                     <span>
-                        <h1 class="panel-title pull-left" style="font-size:30px;">Menu Items</h1>
-                        <div class="dropdown pull-right">
-                        {% for r in restaurants %}
-                          <a href="/restaurants/{{r.id}}/menu/new-item">
-                          {% endfor %}
+                        <h1>{{restaurant.name}}</h1>
+                        <hr>
+                        <div class="">
+                          <a href="/restaurants/{{restaurant.id}}/menu/new-item">
                             <button class="btn btn-success" type="button">
                                 <i class="fa fa-plus" aria-hidden="true"></i>Add New Menu Item
                             </button>
                           </a>
                         </div>
                     </span>
-                    <br>
-                    <br>
-                    <hr>
                     <span></span>
                 </div>
             </div>

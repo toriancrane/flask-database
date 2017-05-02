@@ -4,6 +4,10 @@ html {
 
 .panel {
 	box-shadow: 0 0 30px black;
+	width: 66%;
+	text-align: center;
+	margin: 0 auto;
+	background-color: #3c3c3c;
 }
 
 .menu-card {
@@ -21,6 +25,7 @@ html {
 	color: white;
 }
 
+h1,
 h2 {
 	color: #ffcd94;
 }
