@@ -121,6 +121,14 @@ def editMenuItemPage(restaurant_id, item_id):
     else:
         return render_template('editmenuitem.html', item=item, res_id=res_id)
 
+@app.route('/restaurants/<int:restaurant_id>/menu/<int:item_id>/delete/')
+def deleteMenuItemPage(restaurant_id, item_id):
+    """ Delete Menu Item Function """
+    res_id = restaurant_id
+    item = db_methods.searchItemByID(item_id)
+    error = item.name + " has been deleted from the restaurant menu."
+    db_methods.deleteMenuItem(item_id)
+    return render_template('deleteitem.html', error = error, res_id = res_id)
 
 # @app.route('/restaurant/<int:restaurant_id>/menu/JSON/')
 # def restaurantMenuJSON(restaurant_id):
