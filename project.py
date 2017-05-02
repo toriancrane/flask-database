@@ -112,7 +112,7 @@ def editMenuItemPage(restaurant_id, item_id):
         item_desc = request.form['item_desc']
         item_course = request.form['item_course']
         if item_name and item_price and item_desc and item_course:
-            db_methods.editmenuitem(item_name, item_price, item_desc, item_course, item_id)
+            db_methods.editMenuItem(item_name, item_price, item_desc, item_course, item_id)
             time.sleep(0.1)
             return redirect('/restaurants/%s/menu' % res_id)
         else:
