@@ -26,35 +26,35 @@
                             <div>
                                 <div class="form-group">
                                     <label>Item Name</label>
-                                    <input type="text" name="item_name" class="form-control" required>
+                                    <input type="text" name="item_name" class="form-control" value="{{item.name}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Item Price</label>
-                                    <input type="text" name="item_price" class="form-control" required>
+                                    <input type="text" name="item_price" class="form-control" value="{{item.price}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Item Description</label>
-                                    <textarea class="form-control" rows="5" id="item_desc" name="item_desc" required></textarea>
+                                    <textarea class="form-control" rows="5" id="item_desc" name="item_desc" required>{{item.description}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Course Type</label>
                                     <br>
                                     <label class="radio-inline">
-                                      <input type="radio" name="item_course" value="Appetizer" required>Appetizer
+                                      <input type="radio" name="item_course" value="Appetizer" {% if item.course == "Appetizer" %} checked="checked"{% endif %} required>Appetizer
                                     </label>
                                     <label class="radio-inline">
-                                      <input type="radio" name="item_course" value="Entree">Entree
+                                      <input type="radio" name="item_course" value="Entree" {% if item.course == "Entree" %} checked="checked"{% endif %} >Entree
                                     </label>
                                     <label class="radio-inline">
-                                      <input type="radio" name="item_course" value="Dessert">Dessert
+                                      <input type="radio" name="item_course" value="Dessert" {% if item.course == "Dessert" %} checked="checked"{% endif %} >Dessert
                                     </label>
                                     <label class="radio-inline">
-                                      <input type="radio" name="item_course" value="Beverage">Beverage
+                                      <input type="radio" name="item_course" value="Beverage" {% if item.course == "Beverage" %} checked="checked"{% endif %} >Beverage
                                     </label>
                                 </div>
                                 <div class="center-block">
                                     <div class="col-xs-6 text-left">
-                                        <button class="btn btn-success btn-add btn-block" type="submit">Add</button>
+                                        <button class="btn btn-success btn-add btn-block" type="submit">Edit</button>
                                     </div>
                                     <div class="col-xs-6 text-right"> 
                                         <a href="/restaurants/{{res_id}}/menu" class="btn btn-danger btn-sm btn-block">Cancel</a>

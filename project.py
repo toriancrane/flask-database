@@ -99,36 +99,27 @@ def newMenuItemPage(restaurant_id):
     else:
         return render_template('newmenuitem.html', res_id = res_id)
 
-# @app.route('/restaurants/<int:restaurant_id>/menu/<int:item_id>/edit/', 
-#             methods=['GET', 'POST'])
-# def editMenuItemPage(restaurant_id, item_id):
-#     """ Edit Restaurant Function """
-#     if request.method == 'POST':
-#         item_name = request.form['item_name']
-#         item_price = request.form['item_price']
-#         item_desc = request.form['item_desc']
-#         item_course = request.form['item_course']
-#         if item_name and item_price and item_desc:
-#             db_methods.editRestaurantName(restaurant_id, res_name)
-#             time.sleep(0.1)
-#             return redirect('/restaurants/<int:restaurant_id>/menu')
-#         else:
-#             error = "Please fill out all required fields."
-#             return render_template("newrestaurant.html", error = error)
-#     else:
-#         # Obtain text for item name
-#         item_name = db_methods.searchItemNameByID(restaurant_id)
-
-#         # Obtain text for item price
-
-#         # Obtain text for item description
-
-#         # Obtain item course type
-
-#         # Render edit page with current restaurant name
-#         return render_template('editmenuitem.html', item_name = item_name,
-#                                 item_price = item_price, item_desc = item_desc,
-#                                 item_course = item_course)
+@app.route('/restaurants/<int:restaurant_id>/menu/<int:item_id>/edit/', 
+            methods=['GET', 'POST'])
+def editMenuItemPage(restaurant_id, item_id):
+    """ Edit Menu Item Function """
+    item = db_methods.searchItemByID(item_id)
+    res_id = restaurant_id
+    item_id = item_id
+    if request.method == 'POST':
+        item_name = request.form['item_name']
+        item_price = request.form['item_price']
+        item_desc = request.form['item_desc']
+        item_course = request.form['item_course']
+        if item_name and item_price and item_desc and item_course:
+            db_methods.editmenuitem(item_name, item_price, item_desc, item_course, item_id)
+            time.sleep(0.1)
+            return redirect('/restaurants/%s/menu' % res_id)
+        else:
+            error = "Please fill out all required fields."
+            return render_template("editmenuitem.html", error = error)
+    else:
+        return render_template('editmenuitem.html', item=item, res_id=res_id)
 
 
 # @app.route('/restaurant/<int:restaurant_id>/menu/JSON/')
