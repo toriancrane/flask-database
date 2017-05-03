@@ -39,12 +39,15 @@
 	{% for r in restaurants %}
 	    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 	        <div class="card">
-	            <a href="/restaurants/{{r.id}}/menu">
-                    <img class="card-img-top" src="https://image.flaticon.com/icons/svg/383/383660.svg">
-    	            <div class="card-block">
-    	                <h4 class="card-title mt-3">{{r.name}}</h4>
-    	            </div>
-                </a>
+                <div class="card-img-top">
+                    <a href="/restaurants/{{r.id}}/menu">
+                    <img src="https://image.flaticon.com/icons/svg/383/383660.svg">
+                    <div class="card-title">
+                        {{r.name}}
+                    </div>
+                    
+                    </a>
+                </div>
 	            <div class="card-footer row center-block">
 	            	<div class="col-xs-6 text-left">
 	                	<a href="/restaurants/{{r.id}}/edit" class="btn btn-info btn-sm btn-block">Edit</a>
