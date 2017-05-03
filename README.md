@@ -6,8 +6,10 @@ A live version of this app can be found [here](https://stark-caverns-79622.herok
 
 ## Current Features
 *View/add/edit/delete restaurants
+
 *View/add/edit/delete menu items
 
 ## Features To Be Implemented
 *Authentication and Authorization
+
 *User profile images
