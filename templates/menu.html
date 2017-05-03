@@ -26,128 +26,148 @@
         <div class="col-md-1"></div>
     </div>
     <div class="row">
-        <div class="menu-list">
-            <div class="col-md-3">
-                <div class="menu-card">
-                    <h2>Appetizers</h2>
-                    <div class="divider"></div>
-                    <div class="menu-item">
-                        {% for i in items %} 
-                        {% if i.course == "Appetizer" %} 
-                        <div class="menu-item-name">
-                            {{i.name}}
+        <div class="col-md-2"></div>
+        <div class="col-md-8 menu-col">
+            <div class="menu-card">
+                <h2>Appetizers</h2>
+                <div class="divider"></div>
+                <div class="menu-item">
+                    {% for i in items %} 
+                    {% if i.course == "Appetizer" %} 
+                    <div class="menu-item-name">
+                        {{i.name}}
+                    </div>
+                    <div class="menu-item-desc">
+                        {{i.description}}
+                    </div>
+                    <div class="menu-item-price">
+                        {{i.price}}
+                    </div>
+                    <div class="menu-item-btns center-block">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-2 text-left">
+                            <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/edit/" class="btn btn-info btn-sm btn-block">Edit</a>
                         </div>
-                        <div class="menu-item-desc">
-                            {{i.description}}
+                        <div class="col-xs-2 text-right">
+                            <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/delete" class="btn btn-danger btn-sm btn-block">Delete</a>
                         </div>
-                        <div class="menu-item-price">
-                            {{i.price}}
-                        </div>
-                        <div class="menu-item-btns center-block">
-                            <div class="col-xs-6 text-left">
-                                <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/edit/" class="btn btn-info btn-sm btn-block">Edit</a>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/delete" class="btn btn-danger btn-sm btn-block">Delete</a>
-                            </div>                    
-                        </div>    
-                        <hr>        
-                        {% endif %} 
-                        {% endfor %}            
-                    </div>        
-                </div>
+                        <div class="col-xs-4"></div>                  
+                    </div>    
+                    <hr>        
+                    {% endif %} 
+                    {% endfor %}            
+                </div>        
             </div>
-            <div class="col-md-3">
-                <div class="menu-card">
-                    <h2>Entrees</h2>
-                    <div class="divider"></div>
-                    <div class="menu-item">
-                        {% for i in items %} 
-                        {% if i.course == "Entree" %} 
-                        <div class="menu-item-name">
-                            {{i.name}}
+        </div>
+        <div class="col-md-2"></div>
+    </div> 
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 menu-col">
+            <div class="menu-card">
+                <h2>Entrees</h2>
+                <div class="divider"></div>
+                <div class="menu-item">
+                    {% for i in items %} 
+                    {% if i.course == "Entree" %} 
+                    <div class="menu-item-name">
+                        {{i.name}}
+                    </div>
+                    <div class="menu-item-desc">
+                        {{i.description}}
+                    </div>
+                    <div class="menu-item-price">
+                        {{i.price}}
+                    </div>
+                    <div class="menu-item-btns center-block">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-2 text-left">
+                            <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/edit/" class="btn btn-info btn-sm btn-block">Edit</a>
                         </div>
-                        <div class="menu-item-desc">
-                            {{i.description}}
+                        <div class="col-xs-2 text-right">
+                            <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/delete" class="btn btn-danger btn-sm btn-block">Delete</a>
                         </div>
-                        <div class="menu-item-price">
-                            {{i.price}}
-                        </div>
-                        <div class="menu-item-btns center-block">
-                            <div class="col-xs-6 text-left">
-                                <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/edit/" class="btn btn-info btn-sm btn-block">Edit</a>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/delete" class="btn btn-danger btn-sm btn-block">Delete</a>
-                            </div>                    
-                        </div>      
-                        <hr>        
-                        {% endif %} 
-                        {% endfor %}            
-                    </div>        
-                </div>
+                        <div class="col-xs-4"></div>                  
+                    </div>       
+                    <hr>        
+                    {% endif %} 
+                    {% endfor %}            
+                </div>        
             </div>
-            <div class="col-md-3">
-                <div class="menu-card">
-                    <h2>Desserts</h2>
-                    <div class="divider"></div>
-                    <div class="menu-item">
-                        {% for i in items %} 
-                        {% if i.course == "Dessert" %} 
-                        <div class="menu-item-name">
-                            {{i.name}}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 menu-col">
+            <div class="menu-card">
+                <h2>Desserts</h2>
+                <div class="divider"></div>
+                <div class="menu-item">
+                    {% for i in items %} 
+                    {% if i.course == "Dessert" %} 
+                    <div class="menu-item-name">
+                        {{i.name}}
+                    </div>
+                    <div class="menu-item-desc">
+                        {{i.description}}
+                    </div>
+                    <div class="menu-item-price">
+                        {{i.price}}
+                    </div>
+                    <div class="menu-item-btns center-block">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-2 text-left">
+                            <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/edit/" class="btn btn-info btn-sm btn-block">Edit</a>
                         </div>
-                        <div class="menu-item-desc">
-                            {{i.description}}
+                        <div class="col-xs-2 text-right">
+                            <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/delete" class="btn btn-danger btn-sm btn-block">Delete</a>
                         </div>
-                        <div class="menu-item-price">
-                            {{i.price}}
-                        </div>
-                        <div class="menu-item-btns center-block">
-                            <div class="col-xs-6 text-left">
-                                <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/edit/" class="btn btn-info btn-sm btn-block">Edit</a>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/delete" class="btn btn-danger btn-sm btn-block">Delete</a>
-                            </div>                    
-                        </div>   
-                        <hr>         
-                        {% endif %} 
-                        {% endfor %}            
-                    </div>        
-                </div>
+                        <div class="col-xs-4"></div>                  
+                    </div>   
+                    <hr>         
+                    {% endif %} 
+                    {% endfor %}            
+                </div>        
             </div>
-            <div class="col-md-3">
-                <div class="menu-card">
-                    <h2>Beverages</h2>
-                    <div class="divider"></div>
-                    <div class="menu-item">
-                        {% for i in items %} 
-                        {% if i.course == "Beverage" %} 
-                        <div class="menu-item-name">
-                            {{i.name}}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="menu-card">
+                <h2>Beverages</h2>
+                <div class="divider"></div>
+                <div class="menu-item">
+                    {% for i in items %} 
+                    {% if i.course == "Beverage" %} 
+                    <div class="menu-item-name">
+                        {{i.name}}
+                    </div>
+                    <div class="menu-item-desc">
+                        {{i.description}}
+                    </div>
+                    <div class="menu-item-price">
+                        {{i.price}}
+                    </div>
+                    <div class="menu-item-btns center-block">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-2 text-left">
+                            <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/edit/" class="btn btn-info btn-sm btn-block">Edit</a>
                         </div>
-                        <div class="menu-item-desc">
-                            {{i.description}}
+                        <div class="col-xs-2 text-right">
+                            <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/delete" class="btn btn-danger btn-sm btn-block">Delete</a>
                         </div>
-                        <div class="menu-item-price">
-                            {{i.price}}
-                        </div>
-                        <div class="menu-item-btns center-block">
-                            <div class="col-xs-6 text-left">
-                                <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/edit/" class="btn btn-info btn-sm btn-block">Edit</a>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/delete" class="btn btn-danger btn-sm btn-block">Delete</a>
-                            </div>                    
-                        </div>   
-                        <hr>        
-                        {% endif %} 
-                        {% endfor %}            
-                    </div>        
-                </div>
+                        <div class="col-xs-4"></div>                  
+                    </div>   
+                    <hr>        
+                    {% endif %} 
+                    {% endfor %}            
+                </div>        
             </div>
-        </div>    
-    </div>  
+        </div>
+        <div class="col-md-2"></div>
+    </div>    
 </div>  
 {% endblock %}
