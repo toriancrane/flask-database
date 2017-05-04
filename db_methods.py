@@ -1,3 +1,4 @@
+from flask import flash
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Restaurant, MenuItem, Base
@@ -25,6 +26,7 @@ def getAllRestaurants():
 def addNewRestaurant(val):
     new_res = Restaurant(name = val)
     session.add(new_res)
+    flash('New restaurant successfully created!')
     session.commit()
 
 def searchResByID(val):
