@@ -279,7 +279,7 @@ def editMenuItemPage(restaurant_id, item_id):
 
 @app.route('/restaurants/<int:restaurant_id>/menu/<int:item_id>/delete/')
 @login_required
-def deleteMenuItemPage(item_id):
+def deleteMenuItemPage(restaurant_id, item_id):
     """ Delete Menu Item Function """
     item = db_methods.searchItemByID(item_id)
     res_id = item.restaurant_id
