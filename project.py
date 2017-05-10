@@ -274,7 +274,7 @@ def restaurantMenuPage(restaurant_id):
 
 @app.route('/restaurants/<int:restaurant_id>/menu/new-item/', 
             methods=['GET', 'POST'])
-# @login_required
+@login_required
 def newMenuItemPage(restaurant_id):
     """ Create New Menu Item Function """
     restaurant = db_methods.searchResByID(restaurant_id)
@@ -298,7 +298,7 @@ def newMenuItemPage(restaurant_id):
 
 @app.route('/restaurants/<int:restaurant_id>/menu/<int:item_id>/edit/', 
             methods=['GET', 'POST'])
-# @login_required
+@login_required
 def editMenuItemPage(restaurant_id, item_id):
     """ Edit Menu Item Function """
     item = db_methods.searchItemByID(item_id)
@@ -320,7 +320,7 @@ def editMenuItemPage(restaurant_id, item_id):
         return render_template('editmenuitem.html', item=item, res_id=res_id)
 
 @app.route('/restaurants/<int:restaurant_id>/menu/<int:item_id>/delete/')
-# @login_required
+@login_required
 def deleteMenuItemPage(restaurant_id, item_id):
     """ Delete Menu Item Function """
     item = db_methods.searchItemByID(item_id)
