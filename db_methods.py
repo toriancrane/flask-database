@@ -31,7 +31,7 @@ def getUserID(email):
         return None
 
 def getUserByResId(res_id):
-    restaurant = session.query(Restaurant).filter_by(restaurant_id = res_id).one()
+    restaurant = session.query(Restaurant).filter_by(id = res_id).one()
     return restaurant.user_id
 
 def getUserInfo(user_id):
