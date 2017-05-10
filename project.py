@@ -112,6 +112,11 @@ def gconnect():
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
 
+    user_id = db_methods.getUserID(login_session['email'])
+    if not user_id:
+        user_id = createUser(login_session)
+    login_session['user_id'] = user_id
+
     output = ''
     output += '<h1>Welcome, '
     output += login_session['username']
@@ -172,8 +177,19 @@ def login_required(func):
 def restaurantsPage():
     """ View All Restaurants Function """
     res_list = db_methods.getAllRestaurants()
-    return render_template('restaurants.html', restaurants = res_list)
+    if 'username' not in login_session:
+        return render_template('publicrestaurants.html', restaurants = res_list)
+    else:
+        return render_template('restaurants.html', restaurants = res_list)
 
+def createUser(login_session):
+    user_name = login_session['username']
+    user_email = login_session['email']
+    user_pic = login_session['picture']
+    db_methods.addNewUser(user_name, user_email, user_pic)
+    
+    user_id = db_methods.getUserID(user_email)
+    return user_id
 
 @app.route('/restaurants/new/', methods=['GET', 'POST'])
 @login_required
@@ -181,8 +197,9 @@ def newRestaurantPage():
     """ Create New Restaurant Function """
     if request.method == 'POST':
         res_name = request.form['res_name']
+        user_id = login_session['user_id']
         if res_name:
-            db_methods.addNewRestaurant(res_name)
+            db_methods.addNewRestaurant(res_name, user_id)
             time.sleep(0.1)
             return redirect("/restaurants")
         else:
@@ -219,10 +236,13 @@ def editRestaurantPage(restaurant_id):
 def deleteRestaurantPage(restaurant_id):
     """ Delete Restaurant Function """
     restaurant = db_methods.searchResByID(restaurant_id)
-    res_name = restaurant.name
-    error = res_name + " has been deleted from the restaurant database."
-    db_methods.deleteRestaurant(restaurant_id)
-    return render_template('deleterestaurant.html', error = error)
+    if 'username' not in login_session:
+        return redirect('/login')
+    else:
+        res_name = restaurant.name
+        error = res_name + " has been deleted from the restaurant database."
+        db_methods.deleteRestaurant(restaurant_id)
+        return render_template('deleterestaurant.html', error = error)
 
 
 @app.route('/restaurants/<int:restaurant_id>/menu/')
@@ -230,7 +250,11 @@ def restaurantMenuPage(restaurant_id):
     """ Show Restaurant Menu Items Function """
     restaurant = db_methods.searchResByID(restaurant_id)
     items = db_methods.getMenuItems(restaurant_id)
-    return render_template('menu.html', items = items, restaurant = restaurant)
+    creator = db_methods.getUserByResId(restaurant_id)
+    if 'username' not in login_session or creator.id != login_session['user_id']:
+        return render_template('publicmenu.html', items = items, restaurant = restaurant, creator = creator)
+    else:
+        return render_template('menu.html', items = items, restaurant = restaurant, creator = creator)
 
 
 @app.route('/restaurants/<int:restaurant_id>/menu/new-item/', 
@@ -240,13 +264,15 @@ def newMenuItemPage(restaurant_id):
     """ Create New Menu Item Function """
     restaurant = db_methods.searchResByID(restaurant_id)
     res_id = restaurant_id
+    user_id = login_session['user_id']
     if request.method == 'POST':
         item_name = request.form['item_name']
         item_price = request.form['item_price']
         item_desc = request.form['item_desc']
         item_course = request.form['item_course']
         if item_name and item_price and item_desc and item_course:
-            db_methods.addNewMenuItem(item_name, item_price, item_desc, item_course, res_id)
+            db_methods.addNewMenuItem(user_id, item_name, item_price, 
+                                    item_desc, item_course, res_id)
             time.sleep(0.1)
             return redirect("/restaurants/%s/menu/" % res_id)
         else:

@@ -1,0 +1,126 @@
+{% extends "base.html" %} {% block content %}
+<link rel="stylesheet" type="text/css" href="/static/menu.css">
+
+<div class="container">
+    <div class="row">
+        <div style="padding-top:25px;"> </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="panel panel-default post-panel">
+                <div class="panel-body">
+                    <span>
+                        <h1>{{restaurant.name}}</h1>
+                        <hr>
+                    </span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 menu-col">
+            <div class="menu-card">
+                <h2>Appetizers</h2>
+                <div class="divider"></div>
+                <div class="menu-item">
+                    {% for i in items %} 
+                    {% if i.course == "Appetizer" %} 
+                    <div class="menu-item-name">
+                        {{i.name}}
+                    </div>
+                    <div class="menu-item-desc">
+                        {{i.description}}
+                    </div>
+                    <div class="menu-item-price">
+                        {{i.price}}
+                    </div>  
+                    <hr>        
+                    {% endif %} 
+                    {% endfor %}            
+                </div>        
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div> 
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 menu-col">
+            <div class="menu-card">
+                <h2>Entrees</h2>
+                <div class="divider"></div>
+                <div class="menu-item">
+                    {% for i in items %} 
+                    {% if i.course == "Entree" %} 
+                    <div class="menu-item-name">
+                        {{i.name}}
+                    </div>
+                    <div class="menu-item-desc">
+                        {{i.description}}
+                    </div>
+                    <div class="menu-item-price">
+                        {{i.price}}
+                    </div>      
+                    <hr>        
+                    {% endif %} 
+                    {% endfor %}            
+                </div>        
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 menu-col">
+            <div class="menu-card">
+                <h2>Desserts</h2>
+                <div class="divider"></div>
+                <div class="menu-item">
+                    {% for i in items %} 
+                    {% if i.course == "Dessert" %} 
+                    <div class="menu-item-name">
+                        {{i.name}}
+                    </div>
+                    <div class="menu-item-desc">
+                        {{i.description}}
+                    </div>
+                    <div class="menu-item-price">
+                        {{i.price}}
+                    </div>   
+                    <hr>         
+                    {% endif %} 
+                    {% endfor %}            
+                </div>        
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="menu-card">
+                <h2>Beverages</h2>
+                <div class="divider"></div>
+                <div class="menu-item">
+                    {% for i in items %} 
+                    {% if i.course == "Beverage" %} 
+                    <div class="menu-item-name">
+                        {{i.name}}
+                    </div>
+                    <div class="menu-item-desc">
+                        {{i.description}}
+                    </div>
+                    <div class="menu-item-price">
+                        {{i.price}}
+                    </div> 
+                    <hr>        
+                    {% endif %} 
+                    {% endfor %}            
+                </div>        
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>    
+</div>  
+{% endblock %}

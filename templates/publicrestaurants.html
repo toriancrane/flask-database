@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/restaurants.css">
+<div class="container">
+	<div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">{{ error }}</div>
+            {% endif %}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+	<div class="row">
+		<div style="padding-top:25px;"> </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="panel panel-default post-panel">
+                <div class="panel-body">
+                    <span>
+                        <h1 class="panel-title pull-left" style="font-size:30px;">All Restaurants</h1>
+                    </span>
+                    <br><br><hr>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>		
+	</div>
+	<div class="row">
+	{% for r in restaurants %}
+	    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+	        <div class="card">
+                <div class="card-img-top">
+                    <a href="/restaurants/{{r.id}}/menu">
+                    <img src="https://image.flaticon.com/icons/svg/383/383660.svg">
+                    <div class="card-title">
+                        {{r.name}}
+                    </div>
+                    
+                    </a>
+                </div>
+	            <div class="card-footer row center-block">
+	            </div>
+	        </div>
+	    </div>
+	{% endfor %}		
+	</div>
+</div>
+{% endblock %}

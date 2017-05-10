@@ -6,6 +6,17 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
+class User(Base):
+	""" Corresponds to the User table """
+	# Table information
+	__tablename__ = 'user'
+
+	# Mappers
+	name = Column(String(250), nullable = False)
+	id = Column(Integer, primary_key = True)
+	email = Column(String(250), nullable = False)
+	picture = Column(String(250))
+
 class Restaurant(Base):
 	""" Corresponds to the restaurant table """
 	# Table information
@@ -13,7 +24,9 @@ class Restaurant(Base):
 
 	# Mappers
 	name = Column(String(80), nullable = False)
-	id = Column(Integer, primary_key = True) 
+	id = Column(Integer, primary_key = True)
+	user_id = Column(Integer, ForeignKey('user.id'))
+	user = relationship(User)
 
 
 class MenuItem(Base):
@@ -29,8 +42,10 @@ class MenuItem(Base):
 	price = Column(String(8))
 	restaurant_id = Column(Integer, ForeignKey('restaurant.id'))
 	restaurant = relationship(Restaurant)
+	user_id = Column(Integer, ForeignKey('user.id'))
+	user = relationship(User)
 
 engine = create_engine(
-	'sqlite:///restaurantmenu.db')
+	'sqlite:///restaurantmenuwithusers.db')
 
 Base.metadata.create_all(engine)
