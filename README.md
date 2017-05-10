@@ -9,7 +9,10 @@ A live version of this app can be found [here](https://stark-caverns-79622.herok
 
 *View/add/edit/delete menu items
 
-## Features To Be Implemented
 *Authentication and Authorization
 
+## Features To Be Implemented
+
 *User profile images
+
+*Logout
