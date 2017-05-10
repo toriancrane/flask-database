@@ -47,15 +47,17 @@
                     </div>
                     
                     </a>
-                </div>
+                </div>                
 	            <div class="card-footer row center-block">
+                {% if user_id == r.user_id %}
 	            	<div class="col-xs-6 text-left">
 	                	<a href="/restaurants/{{r.id}}/edit" class="btn btn-info btn-sm btn-block">Edit</a>
 	                </div>
 	                <div class="col-xs-6 text-right"> 
 	                	<a href="/restaurants/{{r.id}}/delete" class="btn btn-danger btn-sm btn-block">Delete</a>
 	                </div>
-	            </div>
+                    {% endif %}
+	            </div>                
 	        </div>
 	    </div>
 	{% endfor %}		

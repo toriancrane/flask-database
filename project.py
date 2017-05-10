@@ -1,4 +1,5 @@
 from flask import session as login_session
+from functools import wraps
 from flask import Flask
 from flask import flash
 from flask import request
@@ -24,11 +25,6 @@ app = Flask(__name__)
 CLIENT_ID = json.loads(
     open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Restaurant Menu Application"
-
-@app.route('/')
-def frontPage():
-    """ Front Page Function """
-    return render_template('front.html')
 
 
 @app.route('/login')
@@ -157,7 +153,7 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
-from functools import wraps
+
 #####   User Login Decorator    #####
 def login_required(func):
     """
@@ -173,15 +169,6 @@ def login_required(func):
     return check_login
 
 
-@app.route('/restaurants/')
-def restaurantsPage():
-    """ View All Restaurants Function """
-    res_list = db_methods.getAllRestaurants()
-    if 'username' not in login_session:
-        return render_template('publicrestaurants.html', restaurants = res_list)
-    else:
-        return render_template('restaurants.html', restaurants = res_list)
-
 def createUser(login_session):
     user_name = login_session['username']
     user_email = login_session['email']
@@ -190,6 +177,29 @@ def createUser(login_session):
     
     user_id = db_methods.getUserID(user_email)
     return user_id
+
+
+@app.route('/')
+def frontPage():
+    """ Front Page Function """
+    if 'username' not in login_session:
+        return render_template('front.html')
+    else:
+        user_id = login_session['user_id']
+        return render_template('front.html', user_id = user_id)
+
+
+@app.route('/restaurants/')
+def restaurantsPage():
+    """ View All Restaurants Function """
+    res_list = db_methods.getAllRestaurants()
+    if 'username' not in login_session:
+        return render_template('publicrestaurants.html', restaurants = res_list)
+    else:
+        user_id = login_session['user_id']
+        return render_template('restaurants.html', restaurants = res_list,
+                                user_id = user_id)
+
 
 @app.route('/restaurants/new/', methods=['GET', 'POST'])
 @login_required
@@ -251,10 +261,13 @@ def restaurantMenuPage(restaurant_id):
     restaurant = db_methods.searchResByID(restaurant_id)
     items = db_methods.getMenuItems(restaurant_id)
     creator = db_methods.getUserByResId(restaurant_id)
-    if 'username' not in login_session or creator.id != login_session['user_id']:
-        return render_template('publicmenu.html', items = items, restaurant = restaurant, creator = creator)
+    if 'username' not in login_session or creator != login_session['user_id']:
+        return render_template('publicmenu.html', items = items, 
+                                restaurant = restaurant, creator = creator)
     else:
-        return render_template('menu.html', items = items, restaurant = restaurant, creator = creator)
+        user_id = login_session['user_id']
+        return render_template('menu.html', items = items, restaurant = restaurant, 
+                                creator = creator, user_id = user_id)
 
 
 @app.route('/restaurants/<int:restaurant_id>/menu/new-item/', 
