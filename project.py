@@ -165,7 +165,7 @@ def login_required(func):
         if 'username' not in login_session:
             return redirect('/login')
         else:
-            func(*args, **kwargs)
+            return func(*args, **kwargs)
     return check_login
 
 
@@ -205,6 +205,8 @@ def restaurantsPage():
 @login_required
 def newRestaurantPage():
     """ Create New Restaurant Function """
+    if 'username' not in login_session:
+        return redirect('/login')
     if request.method == 'POST':
         res_name = request.form['res_name']
         user_id = login_session['user_id']
