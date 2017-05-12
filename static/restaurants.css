@@ -57,6 +57,8 @@ html {
     color: rgba(0, 0, 0, .4);
     border-top: 1px solid rgba(0, 0, 0, .05) !important;
     background: #565656;
+    height: 3.7em !important;
+
 }
 
 .meta {
